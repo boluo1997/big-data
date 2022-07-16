@@ -1,9 +1,12 @@
 package com.atguigu.chapter05;
 
+import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
 
 import java.util.ArrayList;
+import java.util.Properties;
 
 /**
  * @Author dingc
@@ -47,7 +50,15 @@ public class SourceTest {
         // stream4.print("4");
 
         // 5.从kafka中读取数据
+        Properties properties = new Properties();
+        properties.setProperty("bootstrap.servers", "");
+        properties.setProperty("group.id", "");
+        properties.setProperty("key.deserializer", "");
+        properties.setProperty("value.deserializer", "");
+        properties.setProperty("auto.offset.reset", "");
 
+        DataStreamSource<String> kafkaStream = env.addSource(new FlinkKafkaConsumer<String>("topic", new SimpleStringSchema(), properties));
+        kafkaStream.print();
 
         env.execute();
 
