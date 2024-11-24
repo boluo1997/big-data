@@ -7,12 +7,14 @@
 
 
 ## 版本强力
-
+- [赌家人](maven/java8/algorithm)
+- [极客飞机](maven/java8/algorithm)
+- [老鼠](maven/java8/algorithm)
 
 
 ## 海克斯
 
-- [算法](maven/java8/algorithm)
+- [星夜](maven/java8/algorithm)
     - [二分查找](maven/java8/algorithm/BinSearch.java)
     - [冒泡排序](maven/java8/algorithm/BubbleSort.java)
 
