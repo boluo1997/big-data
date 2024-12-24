@@ -6,26 +6,27 @@
 [![npm](https://img.shields.io/npm/v/how-to-cook)](https://www.npmjs.com/package/how-to-cook)
 
 
-## 版本强力
-- [赌家人](maven/java8/algorithm)
-- [极客飞机](maven/java8/algorithm)
-- [老鼠](maven/java8/algorithm)
+## data-mock
+- [批次](maven/java8/algorithm)
+  - [按日](maven/java8/algorithm/BinSearch.java)
+  - [按小时](maven/java8/algorithm/BubbleSort.java)
+- [流式](maven/scala2/basic)
 
 
-## 海克斯
+## data-batch-ingestion
 
-- [星夜](maven/java8/algorithm)
-    - [二分查找](maven/java8/algorithm/BinSearch.java)
-    - [冒泡排序](maven/java8/algorithm/BubbleSort.java)
+- [批次](maven/java8/algorithm)
+    - [按日](maven/java8/algorithm/BinSearch.java)
+    - [按小时](maven/java8/algorithm/BubbleSort.java)
 
 
-## 英雄
+## data-streaming-ingestion
 
-- [基础组件](maven/scala2/basic)
+- [流式](maven/scala2/basic)
     - [数组](maven/scala2/basic/ArrayTest.scala)
 
 
-## 赌狗
+## data-cleansing
 
-- [小项目](./python/demo)
+- [数据清理](./python/demo)
     - [获取NBA球员信息](./python/demo/01_nba.py)
