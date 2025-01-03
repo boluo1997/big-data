@@ -14,9 +14,9 @@ public class SparkUtils {
         String osName = System.getProperty("os.name");
         System.out.println("System name: " + osName);
 
-//        if (osName.startsWith("Windows")) {
-//            System.setProperty("hadoop.home.dir", System.getProperty("user.dir") + "/hadoop/");
-//        }
+        if (osName.startsWith("Windows")) {
+            System.setProperty("hadoop.home.dir", System.getProperty("user.dir") + "/hadoop/");
+        }
 
         return SparkSession.builder().appName("SparkAppName").master("local[*]").getOrCreate();
 

@@ -18,7 +18,7 @@ import static org.apache.spark.sql.functions.*;
  * @datetime 2024-12-15 20:34
  * @description
  */
-public class Application {
+public class DataMockApp {
 
     public static void main(String[] args) throws IOException {
 
@@ -40,7 +40,7 @@ public class Application {
         System.out.println("读取配置文件: ");
         Properties prop = new Properties();
         // 如果读取为null, 需要查看启动类是不是 当前子模块下
-        InputStream resourceInputStream = Application.class.getResourceAsStream("/application-dev.properties");
+        InputStream resourceInputStream = DataMockApp.class.getResourceAsStream("/application-dev.properties");
         prop.load(resourceInputStream);
 
 
