@@ -2,7 +2,6 @@ package com.boluo;
 
 import com.boluo.utils.SparkUtils;
 import com.google.common.collect.ImmutableList;
-import com.google.common.io.Resources;
 import org.apache.spark.sql.*;
 import org.apache.spark.sql.types.StructType;
 
