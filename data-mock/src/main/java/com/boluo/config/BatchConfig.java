@@ -7,4 +7,18 @@ package com.boluo.config;
  */
 public class BatchConfig {
 
+    private static BatchConfig batchConfig;
+
+    public static BatchConfig getInstance() {
+        if (batchConfig == null) {
+            batchConfig = new BatchConfig();
+        }
+        return batchConfig;
+    }
+
+    public BatchConfig load(String[] args) {
+        String params = args[0];
+        return this;
+    }
+
 }
