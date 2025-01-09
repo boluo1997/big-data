@@ -1,0 +1,29 @@
+# DB
+source:
+    name: ORD
+    type: oracle
+    jdbcUrl: jdbc:mysql://mysql.sqlpub.com:3306/dingchao_db?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    driverClass: com.mysql.cj.jdbc.Driver
+    dbName: dingchao_db
+    username: dingchao
+    password: 6049773e1914457d
+
+jobs:
+    - name: a
+      sourceName: ORD
+      sourceSchema: bronze
+      sourceTable: bronze_daily
+      ingestEnabled: Y
+      type: daily
+      destTable: bronze_daily
+      sqlQuery: select * from bronze_daily
+
+    - name: b
+      sourceName: ORD
+      sourceSchema: bronze
+      sourceTable: bronze_daily
+      ingestEnabled: Y
+      type: hourly
+      destTable: bronze_daily
+      sqlQuery: select * from bronze_daily
+
