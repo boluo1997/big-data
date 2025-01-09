@@ -1,5 +1,7 @@
 package com.boluo;
 
+import com.boluo.config.BatchConfig;
+import com.boluo.process.ProcessorFactory;
 import com.boluo.utils.SparkUtils;
 import com.google.common.collect.ImmutableList;
 import org.apache.spark.sql.*;
@@ -19,7 +21,13 @@ import static org.apache.spark.sql.functions.*;
  */
 public class DataMockApp {
 
-    public static void main(String[] args) throws IOException {
+    // {"job_env":dev,"job_type":daily}
+    public static void main(String[] args) {
+        BatchConfig batchConfig = BatchConfig.getInstance().load(args);
+        ProcessorFactory.getInstance().getProcessor(batchConfig).process();
+    }
+
+    private static void mockData() throws IOException {
 
         SparkSession spark = SparkUtils.initialSpark();
         StructType scheme = new StructType()
@@ -33,7 +41,6 @@ public class DataMockApp {
 
         Dataset<Row> ds = spark.createDataFrame(ImmutableList.of(row1, row2, row3), scheme);
         ds.show(false);
-
 
         // mock 到 mysql,
         System.out.println("读取配置文件: ");
@@ -57,7 +64,6 @@ public class DataMockApp {
                 .save();
 
         System.out.println("数据mock完成!!");
-
     }
 
 }
