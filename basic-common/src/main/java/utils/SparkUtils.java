@@ -1,10 +1,10 @@
-package com.boluo.utils;
+package utils;
 
 import org.apache.spark.sql.SparkSession;
 
 /**
  * @author chao
- * @datetime 2024-12-16 14:10
+ * @datetime 2025-01-11 16:59
  * @description
  */
 public class SparkUtils {
@@ -19,8 +19,6 @@ public class SparkUtils {
         }
 
         return SparkSession.builder().appName("SparkAppName").master("local[*]").getOrCreate();
-
     }
-
 
 }

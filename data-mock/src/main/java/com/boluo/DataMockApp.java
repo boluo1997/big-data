@@ -2,10 +2,10 @@ package com.boluo;
 
 import com.boluo.config.BatchConfig;
 import com.boluo.process.ProcessorFactory;
-import com.boluo.utils.SparkUtils;
 import com.google.common.collect.ImmutableList;
 import org.apache.spark.sql.*;
 import org.apache.spark.sql.types.StructType;
+import utils.SparkUtils;
 
 import java.io.IOException;
 import java.io.InputStream;

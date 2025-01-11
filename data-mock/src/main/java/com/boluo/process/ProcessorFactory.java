@@ -2,8 +2,8 @@ package com.boluo.process;
 
 import com.boluo.config.BatchConfig;
 import com.boluo.config.Constants;
-import com.boluo.utils.SparkUtils;
 import org.apache.spark.sql.SparkSession;
+import utils.SparkUtils;
 
 
 /**
