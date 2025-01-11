@@ -16,8 +16,12 @@ import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * @author chao
@@ -36,6 +40,19 @@ public class HttpUtils {
         http = HttpClients.custom()
                 .setConnectionManager(cm)
                 .build();
+    }
+
+    public static String params(Map<String, String> map) {
+        return map.entrySet().stream()
+                .map(entry -> {
+                    try {
+                        return entry.getKey() + "=" + URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8.toString());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        return entry.getKey() + "=" + entry.getValue();
+                    }
+                })
+                .collect(Collectors.joining("&"));
     }
 
 
