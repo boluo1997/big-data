@@ -3,17 +3,21 @@ package utils;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Preconditions;
+import org.apache.commons.compress.utils.Charsets;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Optional;
 
 /**
  * @author chao
@@ -21,7 +25,7 @@ import java.io.InputStream;
  * @description
  */
 public class HttpUtils {
-    
+
     private static final CloseableHttpClient http;
     private static final ObjectMapper mapper = new ObjectMapper();
 
@@ -32,6 +36,29 @@ public class HttpUtils {
         http = HttpClients.custom()
                 .setConnectionManager(cm)
                 .build();
+    }
+
+
+    public static JsonNode apiRequest(String method, String uri, HashMap<String, String> headers, JsonNode body) {
+        RequestBuilder requestBuilder = RequestBuilder.create(method)
+                .setUri(uri)
+                .setHeader("Content-Type", "application/json")
+                .setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36 Edg/80.0.361.69");
+
+        Optional.ofNullable(headers).ifPresent(i -> {
+            headers.forEach(requestBuilder::setHeader);
+        });
+
+        Optional.ofNullable(body).ifPresent(i -> {
+            requestBuilder.setEntity(new StringEntity(body.toString(), Charsets.UTF_8));
+        });
+
+        try (CloseableHttpResponse response = http.execute(requestBuilder.build()); InputStream is = response.getEntity().getContent()) {
+            Preconditions.checkArgument(response.getStatusLine().getStatusCode() == 200, response.getStatusLine());
+            return mapper.readTree(is);
+        } catch (IOException e) {
+            throw new RuntimeException(String.format("%s %s:%s", method, uri, body), e);
+        }
     }
 
     public static JsonNode postHttp(String url, JsonNode data) {
