@@ -23,6 +23,7 @@ public abstract class BaseProcessor implements Processor {
 
     protected long ingest(BatchYamlConfig.Job job, String batchID) {
         // TODO
+        System.out.println("start ingest...");
         return 0L;
     }
 

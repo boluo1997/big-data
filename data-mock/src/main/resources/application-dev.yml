@@ -23,7 +23,7 @@ jobs:
       sourceApiKey: 510a775dacb86eb6347c701edcf02d59
       requestType: GET
       params: date=replace1
-      sqlQuery: select * from bronze_daily
+      destTable: bronze_daily_calender
       ingestType: daily
       ingestEnabled: Y
 
