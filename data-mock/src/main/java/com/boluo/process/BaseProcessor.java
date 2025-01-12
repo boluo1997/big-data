@@ -3,6 +3,8 @@ package com.boluo.process;
 import com.boluo.config.BatchYamlConfig;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author chao
@@ -21,9 +23,14 @@ public abstract class BaseProcessor implements Processor {
 
     public abstract void executeTasks(List<BatchYamlConfig.Job> jobList);
 
-    protected long ingest(BatchYamlConfig.Job job, String batchID) {
-        // TODO
+    protected long ingest(BatchYamlConfig.Job job, String batchId) {
         System.out.println("start ingest...");
+
+        String regex = "=([^&]*replace[^&]*)";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(job.getParams());
+        System.out.println(matcher.group(1));
+
         return 0L;
     }
 

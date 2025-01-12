@@ -39,6 +39,7 @@ public class BatchYamlConfig {
         private String name;
         private String sourceName;
         private String sourceApiKey;
+        private String sourceApiUrl;
         private String requestType;
         private String params;
         private String destTable;

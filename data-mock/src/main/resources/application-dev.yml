@@ -11,6 +11,7 @@ source:
 jobs:
     - name: today_on_history
       sourceName: API-JuHe
+      sourceApiUrl: http://v.juhe.cn/todayOnhistory/queryEvent
       sourceApiKey: 74dbd7d41fb458051b66b01ed6cd412f
       requestType: GET
       params: date=replace1
@@ -20,6 +21,7 @@ jobs:
 
     - name: calendar
       sourceName: API-JuHe
+      sourceApiUrl: http://v.juhe.cn/calendar/day
       sourceApiKey: 510a775dacb86eb6347c701edcf02d59
       requestType: GET
       params: date=replace1
