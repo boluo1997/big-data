@@ -38,21 +38,21 @@ public class BatchYamlConfig {
     public static class Job {
         private String name;
         private String sourceName;
-        private String sourceSchema;
-        private String sourceTable;
-        private String ingestEnabled;
-        private String type;
+        private String sourceApiKey;
+        private String requestType;
+        private String params;
         private String destTable;
-        private String sqlQuery;
+        private String ingestType;
+        private String ingestEnabled;
     }
 
 
     public List<Job> getDailyJobs() {
-        return jobs.stream().filter(k -> k.getType().equalsIgnoreCase(Constants.DAILY)).filter(m -> Constants.YES.equalsIgnoreCase(m.getIngestEnabled())).collect(Collectors.toList());
+        return jobs.stream().filter(k -> k.getIngestType().equalsIgnoreCase(Constants.DAILY)).filter(m -> Constants.YES.equalsIgnoreCase(m.getIngestEnabled())).collect(Collectors.toList());
     }
 
     public List<Job> getHourlyJobs() {
-        return jobs.stream().filter(k -> k.getType().equalsIgnoreCase(Constants.HOURLY)).filter(m -> Constants.YES.equalsIgnoreCase(m.getIngestEnabled())).collect(Collectors.toList());
+        return jobs.stream().filter(k -> k.getIngestType().equalsIgnoreCase(Constants.HOURLY)).filter(m -> Constants.YES.equalsIgnoreCase(m.getIngestEnabled())).collect(Collectors.toList());
     }
 
 

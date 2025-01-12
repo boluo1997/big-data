@@ -10,20 +10,21 @@ source:
 
 jobs:
     - name: today_on_history
-      sourceName: API
-      sourceSchema: bronze
-      sourceTable: bronze_daily_today_on_history
+      sourceName: API-JuHe
+      sourceApiKey: 74dbd7d41fb458051b66b01ed6cd412f
+      requestType: GET
+      params: date=replace1
+      destTable: bronze_daily_today_on_history
+      ingestType: daily
       ingestEnabled: Y
-      type: daily
-      destTable: bronze_daily
-      sqlQuery: select * from bronze_daily
 
     - name: calendar
-      sourceName: API
-      sourceSchema: bronze
-      sourceTable: bronze_daily_calendar
-      ingestEnabled: Y
-      type: hourly
-      destTable: bronze_daily
+      sourceName: API-JuHe
+      sourceApiKey: 510a775dacb86eb6347c701edcf02d59
+      requestType: GET
+      params: date=replace1
       sqlQuery: select * from bronze_daily
+      ingestType: daily
+      ingestEnabled: Y
+
 
