@@ -1,6 +1,11 @@
---
+-- 历史上的今天
 CREATE TABLE bronze_batch_daily(
     id int not null,
-    name char(128),
-    email char(128)
+    raw_msg varchar,
+    load_date date,
+    created_timestamp timestamp
 );
+
+
+-- 万年历
+

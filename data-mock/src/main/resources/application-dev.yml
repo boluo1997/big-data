@@ -9,19 +9,19 @@ source:
     password: 6049773e1914457d
 
 jobs:
-    - name: a
-      sourceName: ORD
+    - name: today_on_history
+      sourceName: API
       sourceSchema: bronze
-      sourceTable: bronze_daily
+      sourceTable: bronze_daily_today_on_history
       ingestEnabled: Y
       type: daily
       destTable: bronze_daily
       sqlQuery: select * from bronze_daily
 
-    - name: b
-      sourceName: ORD
+    - name: calendar
+      sourceName: API
       sourceSchema: bronze
-      sourceTable: bronze_daily
+      sourceTable: bronze_daily_calendar
       ingestEnabled: Y
       type: hourly
       destTable: bronze_daily
