@@ -5,6 +5,7 @@ import com.boluo.utils.HttpUtils;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,7 +29,7 @@ public abstract class BaseProcessor implements Processor {
     protected long ingest(BatchYamlConfig.Job job, String batchId) {
         System.out.println("start ingest...");
 
-        HashMap<String, String> params = HttpUtils.parseParams(job.getParams());
+        Map<String, String> params = HttpUtils.parseParams(job.getParams());
 
         return 0L;
     }

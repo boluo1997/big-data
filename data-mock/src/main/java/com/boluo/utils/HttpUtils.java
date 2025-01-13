@@ -1,6 +1,8 @@
 package com.boluo.utils;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -10,29 +12,19 @@ import java.util.regex.Pattern;
  * @description
  */
 public class HttpUtils extends utils.HttpUtils {
+    private static final Map<String, String> paramsMap = new ConcurrentHashMap<>(32);
 
-    public static HashMap<String, String> parseParams(String params) {
-        String regex = "([^&=]+)=([^&=]+)";
-        System.out.println(params);
-
+    public static Map<String, String> parseParams(String params) {
+        String regex = "([^&=]+)=([^&]*)";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(params);
 
-        // 计算总共有几对
-        int count = 0;
         while (matcher.find()) {
-            count++;
+            String key = matcher.group(1);
+            String value = matcher.group(2);
+            paramsMap.put(key, value);
         }
-
-        // TODO
-        if (matcher.find()) {
-            System.out.println("匹配成功, key: " + matcher.group(1));
-            System.out.println("匹配成功, value: " + matcher.group(2));
-        }
-
-
-        System.out.println("AAaa");
-        return null;
+        return paramsMap;
     }
 
 

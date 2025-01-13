@@ -45,6 +45,7 @@ public class BatchYamlConfig {
         private String destTable;
         private String ingestType;
         private String ingestEnabled;
+        private Source source;
     }
 
 
