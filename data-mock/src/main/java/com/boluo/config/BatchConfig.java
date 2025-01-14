@@ -54,11 +54,10 @@ public class BatchConfig {
         BatchYamlConfig yamlConfig = yaml.loadAs(inputStream, BatchYamlConfig.class);
         System.out.println("Load source and job table success ");
 
-        // todo populate source info
-        yamlConfig.getJobs().forEach(k -> {
-            // Optional<BatchYamlConfig.Source> source = yamlConfig.getSources().stream().filter(m -> m.getName().equals(k.getSourceName())).findFirst();
-            Optional<BatchYamlConfig.Source> source = Optional.empty();
-            source.ifPresent(k::setSource);
+        // populate dest database info to Job object
+        yamlConfig.getJobs().forEach(job -> {
+            Optional<BatchYamlConfig.Dest> dest = yamlConfig.getDest().stream().filter(d -> d.getName().equalsIgnoreCase(job.getDestName())).findFirst();
+            dest.ifPresent(job::setDest);
         });
 
         setYamlConfig(yamlConfig);

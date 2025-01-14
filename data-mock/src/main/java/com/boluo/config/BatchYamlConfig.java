@@ -15,12 +15,12 @@ import java.util.stream.Collectors;
 @ToString
 public class BatchYamlConfig {
 
-    private Source source;
+    private List<Dest> dest;
     private List<Job> jobs;
 
 
     @Data
-    public static class Source {
+    public static class Dest {
         private String name;
         private String type;
         private String jdbcUrl;
@@ -42,10 +42,11 @@ public class BatchYamlConfig {
         private String sourceApiUrl;
         private String requestType;
         private String params;
+        private String destName;
         private String destTable;
         private String ingestType;
         private String ingestEnabled;
-        private Source source;
+        private Dest dest;
     }
 
 

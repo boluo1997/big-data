@@ -2,12 +2,13 @@ package com.boluo.process;
 
 import com.boluo.config.BatchYamlConfig;
 import com.boluo.utils.HttpUtils;
+import org.apache.spark.sql.Dataset;
+import org.apache.spark.sql.Row;
+import org.apache.spark.sql.SparkSession;
+import utils.SparkUtils;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * @author chao
@@ -30,8 +31,11 @@ public abstract class BaseProcessor implements Processor {
         System.out.println("start ingest...");
 
         Map<String, String> params = HttpUtils.parseParams(job.getParams());
+        Dataset<Row> sourceDs = SparkSession.active().emptyDataFrame();
 
-        return 0L;
+        BatchYamlConfig.Dest destDB = job.getDest();
+        SparkUtils.writeToMySQL(sourceDs, destDB.getJdbcUrl(), destDB.getDbName(), destDB.getUsername(), destDB.getPassword());
+        return 0;
     }
 
 }

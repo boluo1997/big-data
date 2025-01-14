@@ -1,12 +1,13 @@
 # DB
-source:
-    name: ORD
-    type: oracle
-    jdbcUrl: jdbc:mysql://mysql.sqlpub.com:3306/dingchao_db?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
-    driverClass: com.mysql.cj.jdbc.Driver
-    dbName: dingchao_db
-    username: dingchao
-    password: 6049773e1914457d
+dest:
+    - name: ORD
+      type: mysql
+      jdbcUrl: jdbc:mysql://mysql.sqlpub.com:3306/dingchao_db?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+      driverClass: com.mysql.cj.jdbc.Driver
+      dbName: dingchao_db
+      username: dingchao
+      password: 6049773e1914457d
+
 
 jobs:
     - name: today_on_history
@@ -15,6 +16,7 @@ jobs:
       sourceApiKey: 74dbd7d41fb458051b66b01ed6cd412f
       requestType: GET
       params: date=replace1
+      destName: ORD
       destTable: bronze_daily_today_on_history
       ingestType: daily
       ingestEnabled: Y
@@ -25,8 +27,7 @@ jobs:
       sourceApiKey: 510a775dacb86eb6347c701edcf02d59
       requestType: GET
       params: date=replace1
+      destName: ORD
       destTable: bronze_daily_calender
       ingestType: daily
       ingestEnabled: Y
-
-
