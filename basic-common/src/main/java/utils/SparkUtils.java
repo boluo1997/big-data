@@ -41,13 +41,13 @@ public class SparkUtils {
 
     public static void writeToMySQL(Dataset<Row> ds, String url, String tableName, String user, String password) {
         System.out.println("write to mysql...");
-//        ds.write().format("jdbc")
-//                .option("url", url)
-//                .option("dbtable", tableName)
-//                .option("user", user)
-//                .option("password", password)
-//                .mode(SaveMode.Overwrite)
-//                .save();
+        ds.write().format("jdbc")
+                .option("url", url)
+                .option("dbtable", tableName)
+                .option("user", user)
+                .option("password", password)
+                .mode(SaveMode.Overwrite)
+                .save();
     }
 
 }
