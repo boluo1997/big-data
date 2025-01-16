@@ -46,7 +46,7 @@ public class SparkUtils {
                 .option("dbtable", tableName)
                 .option("user", user)
                 .option("password", password)
-                .mode(SaveMode.Overwrite)
+                .mode(SaveMode.Append)
                 .save();
     }
 
