@@ -1,11 +1,7 @@
 package com.boluo.process;
 
 import com.boluo.config.BatchYamlConfig;
-import com.boluo.utils.HttpUtils;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.google.common.collect.Streams;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
@@ -14,8 +10,6 @@ import utils.SparkUtils;
 import javax.ws.rs.HttpMethod;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 import static org.apache.spark.sql.functions.*;
 
