@@ -23,7 +23,7 @@
 ## data-streaming-ingestion
 
 - [流式](maven/scala2/basic)
-    - [数组](maven/scala2/basic/ArrayTest.scala)
+    - [Kafka](maven/scala2/basic/ArrayTest.scala)
 
 
 ## data-cleansing
