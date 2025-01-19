@@ -29,4 +29,4 @@
 ## data-cleansing
 
 - [数据清理](./python/demo)
-    - [获取NBA球员信息](./python/demo/01_nba.py)
+    - [ipad test](./python/demo/01_nba.py)
