@@ -1,11 +1,18 @@
 package com.boluo;
 
+import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.serialization.StringDeserializer;
 import org.junit.Test;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
+import java.time.Duration;
+import java.util.Collections;
 import java.util.Properties;
 
 
@@ -20,7 +27,7 @@ public class StreamingApplicationTest {
     public void func1(){
 
         Properties props = new Properties();
-        props.put("bootstrap.servers", "192.168.0.105:9092");
+        props.put("bootstrap.servers", "118.178.253.61:9092");
         // props.put("group.id", "");
 
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
@@ -40,7 +47,6 @@ public class StreamingApplicationTest {
 
         System.out.println("send finished !!");
     }
-
 
 
 }
