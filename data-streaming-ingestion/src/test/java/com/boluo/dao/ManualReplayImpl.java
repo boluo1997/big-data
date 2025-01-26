@@ -13,6 +13,7 @@ public class ManualReplayImpl {
 
     public static void consumerByStructured() {
 
+
     }
 
 }
