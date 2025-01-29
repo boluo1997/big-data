@@ -29,4 +29,4 @@
 ## data-cleansing
 
 - [数据清理](./python/demo)
-    - [iphone  test](./python/demo/py)
+    - [iphone test](./python/demo/py)
