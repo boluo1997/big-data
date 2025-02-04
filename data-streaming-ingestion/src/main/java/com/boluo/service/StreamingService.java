@@ -45,4 +45,10 @@ public class StreamingService {
         System.out.println("test2 !!");
     }
 
+    public void runManualReplay() throws TimeoutException, StreamingQueryException {
+        Map<String, String> params = kafkaConfigService.getParams("job_trade");
+        manualReplayImpl.write(params);
+        System.out.println("test2 !!");
+    }
+
 }

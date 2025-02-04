@@ -103,4 +103,10 @@ public class StreamingApplication implements CommandLineRunner {
         streamingService.getKafkaTopicInfo();
     }
 
+    @Profile("job_manual_replay")
+    @Bean
+    public void runManualReplay() throws TimeoutException, StreamingQueryException {
+        streamingService.runManualReplay();
+    }
+
 }
