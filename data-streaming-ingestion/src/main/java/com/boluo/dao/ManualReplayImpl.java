@@ -52,4 +52,8 @@ public class ManualReplayImpl {
         );
     }
 
+    public void dataSet2JsonNode() {
+        // 将csv中读取的数据转成jsonNode
+    }
+
 }
