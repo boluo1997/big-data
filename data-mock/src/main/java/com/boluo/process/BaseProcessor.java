@@ -45,7 +45,7 @@ public abstract class BaseProcessor implements Processor {
         String apiKey = job.getSourceApiKey();
         HashMap<String, String> params = new HashMap<String, String>() {{
             put("key", apiKey);
-            put("date", "1/14");
+            put("date", "1/15");
         }};
 
         String url = String.format("%s?%s", apiUrl, utils.HttpUtils.params(params));

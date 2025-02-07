@@ -9,4 +9,13 @@
     <artifactId>data-streaming-ingestion</artifactId>
     <name>Archetype - data-streaming-ingestion</name>
     <url>http://maven.apache.org</url>
+    
+    <dependencies>
+        <dependency>
+            <groupId>com.boluo</groupId>
+            <artifactId>basic-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
 </project>
