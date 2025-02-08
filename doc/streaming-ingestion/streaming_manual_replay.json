@@ -1,0 +1,17 @@
+[
+    {
+        "topic": "trade",
+        "partitions": [
+            {
+                "partition_id": "0",
+                "begin_offset": "1",
+                "end_offset": "3"
+            },
+            {
+                "partition_id": "2",
+                "begin_offset": "7",
+                "end_offset": "9"
+            }
+        ]
+    }
+]
