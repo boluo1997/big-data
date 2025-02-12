@@ -18,9 +18,10 @@ import java.util.concurrent.TimeoutException;
 @Component
 public class ManualReplayImpl {
 
+    private static final SparkSession spark = SparkUtils.initialSpark();
+
     public void write(Map<String, String> params) throws TimeoutException, StreamingQueryException {
 
-        SparkSession spark = SparkUtils.initialSpark();
         Dataset<Row> csvDs = spark.read()
                 .format("csv")
                 .option("inferSchema", "true")
@@ -52,8 +53,14 @@ public class ManualReplayImpl {
         );
     }
 
-    public void dataSet2JsonNode() {
-        // 将csv中读取的数据转成jsonNode
+    public static void main(String[] args) {
+        dataSet2JsonNode();
+    }
+
+    public static void dataSet2JsonNode() {
+        // 将json中读取的数据转成jsonNode
+        Dataset<Row> jsonDs = spark.read().json("C:\\Users\\dingc\\IdeaProjects\\big-data\\doc\\streaming-ingestion\\streaming_manual_replay.json");
+        jsonDs.show(false);
     }
 
 }
