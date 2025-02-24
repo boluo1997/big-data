@@ -49,8 +49,10 @@ public class ManualReplayImpl {
     @Autowired
     private KafkaConfigService kafkaConfigService;
 
-    @Autowired
-    private StreamingService streamConfigService;
+    // 会导致循环依赖
+    // @Autowired
+    // private StreamingService streamConfigService;
+
 
     @Autowired
     private WriteDaoImpl writeDAOImpl;
@@ -62,14 +64,16 @@ public class ManualReplayImpl {
 
     public void write(Map<String, String> params) throws TimeoutException, StreamingQueryException {
 
+        String path = System.getProperty("user.dir") + "/doc/streaming-ingestion/streaming_manual_replay.json";
+        System.out.println("path: " + path);
         Dataset<Row> jsonDs = spark.read()
                 .option("multiLine", true)
                 .option("mode", "permissive")
-                .json("C:\\Users\\dingc\\IdeaProjects\\big-data\\doc\\streaming-ingestion\\streaming_manual_replay.json")
+                .json(path)
                 .cache();
 
         jsonDs.show(false);
-        System.out.println("Aaaaaaa");
+
 
         for (Row row : jsonDs.collectAsList()) {
 
@@ -174,14 +178,5 @@ public class ManualReplayImpl {
         );
     }
 
-    public static void main(String[] args) {
-        dataSet2JsonNode();
-    }
-
-    public static void dataSet2JsonNode() {
-        // 将json中读取的数据转成jsonNode
-        Dataset<Row> jsonDs = spark.read().json("C:\\Users\\dingc\\IdeaProjects\\big-data\\doc\\streaming-ingestion\\streaming_manual_replay.json");
-        jsonDs.show(false);
-    }
 
 }

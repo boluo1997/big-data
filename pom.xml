@@ -20,7 +20,7 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <spark.version>3.5.0</spark.version>
+        <spark.version>3.4.1</spark.version>
     </properties>
 
     <parent>
@@ -116,7 +116,11 @@
             <version>31.1-jre</version>
         </dependency>
 
+
         <!-- jackson 加上spring之后会有依赖冲突, 所以将所有module都写上 -->
+        <!-- Caused by: java.lang.ClassNotFoundException: com.fasterxml.jackson.core.StreamReadConstraints Spark 3.5.0 会出这个问题 -->
+        <!-- Spark 3.4.1 + jackson 2.8.0 会出问题 -->
+        <!-- Spark 3.4.1 + jackson 2.13.4 或者 Spark 3.4.1 + jackson 不写版本 -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
@@ -132,6 +136,7 @@
             <artifactId>jackson-annotations</artifactId>
             <version>2.13.4</version>
         </dependency>
+
 
         <!-- http apache -->
         <dependency>
