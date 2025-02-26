@@ -1,6 +1,7 @@
 package com.boluo.dao;
 
 import com.boluo.config.KafkaConfigService;
+import com.boluo.config.StreamConfigService;
 import com.boluo.service.StreamingService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -49,17 +50,14 @@ public class ManualReplayImpl {
     @Autowired
     private KafkaConfigService kafkaConfigService;
 
-    // 会导致循环依赖
-    // @Autowired
-    // private StreamingService streamConfigService;
-
+    @Autowired
+    private StreamConfigService streamConfigService;
 
     @Autowired
     private WriteDaoImpl writeDAOImpl;
 
     @Autowired
     private KafkaTopicImpl kafkaTopicImpl;
-
 
 
     public void write(Map<String, String> params) throws TimeoutException, StreamingQueryException {
@@ -136,11 +134,11 @@ public class ManualReplayImpl {
 
 
             ds.show(100);
-            ds.withColumn("created_timestamp", functions.current_timestamp())
-                    .write()
-                    .format("delta")
-                    .mode("append")
-                    .insertInto(deltaTable);
+//            ds.withColumn("created_timestamp", functions.current_timestamp())
+//                    .write()
+//                    .format("delta")
+//                    .mode("append")
+//                    .insertInto(deltaTable);
 
             LOG.warn("write data end !!");
 
