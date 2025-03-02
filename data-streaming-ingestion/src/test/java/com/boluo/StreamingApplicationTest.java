@@ -14,6 +14,7 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.Properties;
+import java.util.UUID;
 
 
 /**
@@ -24,11 +25,11 @@ import java.util.Properties;
 public class StreamingApplicationTest {
 
     @Test
-    public void func1(){
+    public void func1() {
 
+        // 发送消息到Kafka
         Properties props = new Properties();
         props.put("bootstrap.servers", "118.178.253.61:9092");
-        // props.put("group.id", "");
 
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
@@ -38,7 +39,9 @@ public class StreamingApplicationTest {
         try (KafkaProducer<String, String> producer = new KafkaProducer<>(props)) {
             ProducerRecord<String, String> recode;
             for (int i = 0; i < 5; i++) {
-                recode = new ProducerRecord<>(topic, "Message: " + i);
+                UUID uuid = UUID.randomUUID();
+                String value = String.format("{\"name\":\"Tom\", \"age\":30, \"userId\", \"%s\"}", uuid);
+                recode = new ProducerRecord<>(topic, value);
                 producer.send(recode);
             }
         } catch (Exception e) {
