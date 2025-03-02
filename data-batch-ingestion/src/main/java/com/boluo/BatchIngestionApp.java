@@ -19,7 +19,7 @@ import static org.apache.spark.sql.functions.*;
  * @datetime 2024-12-15 20:34
  * @description
  */
-public class DataBatchIngestionApp {
+public class BatchIngestionApp {
 
     // {"job_env":dev,"job_type":daily}
     public static void main(String[] args) {
@@ -46,7 +46,7 @@ public class DataBatchIngestionApp {
         System.out.println("读取配置文件: ");
         Properties prop = new Properties();
         // 如果读取为null, 需要查看启动类是不是 当前子模块下
-        InputStream resourceInputStream = DataBatchIngestionApp.class.getResourceAsStream("/application-dev.properties");
+        InputStream resourceInputStream = BatchIngestionApp.class.getResourceAsStream("/application-dev.properties");
         prop.load(resourceInputStream);
 
 
