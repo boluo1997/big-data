@@ -34,7 +34,9 @@ public class WriteDaoImpl {
                 .foreachBatch((batchDs, batchId) -> {
                     System.out.println("batchId" + batchId);
                     if (!batchDs.isEmpty()) {
-                        // batchDs.show(false);
+                        System.out.println("kafka msg: ");
+                        batchDs.show(false);
+
                         String jdbcUrl = "jdbc:mysql://mysql.sqlpub.com:3306/dingchao_db?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai";
                         String tableName = "bronze_trade";
                         String userName = "dingchao";
@@ -53,6 +55,11 @@ public class WriteDaoImpl {
         // |34              |0              |test       |Message: 4|null          |
         // +----------------+---------------+-----------+----------+--------------+
 
+    }
+
+    public static Dataset<Row> filterJsonData(Dataset<Row> ds) {
+        // TODO 过滤出 json data
+        return null;
     }
 
     public static Dataset<Row> processJsonData(Dataset<Row> ds) {
