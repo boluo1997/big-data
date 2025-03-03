@@ -8,6 +8,8 @@ import org.apache.spark.sql.SparkSession;
 import utils.SparkUtils;
 
 import javax.ws.rs.HttpMethod;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 
@@ -43,15 +45,13 @@ public abstract class BaseProcessor implements Processor {
         // Map<String, String> params = HttpUtils.parseParams(job.getParams());
         String apiUrl = job.getSourceApiUrl();
         String apiKey = job.getSourceApiKey();
+        String date = timeFormatFunc(LocalDate.now());
         HashMap<String, String> params = new HashMap<String, String>() {{
             put("key", apiKey);
-            put("date", "3/2");
-            // TODO 日期规则,格式:月/日 如:1/1,/10/1,12/12 如月或者日小于10,前面无需加0
-
+            put("date", date);
         }};
 
         String url = String.format("%s?%s", apiUrl, utils.HttpUtils.params(params));
-
         JsonNode responseNode = utils.HttpUtils.apiRequest(HttpMethod.GET, url, null, null);
         System.out.println("response body: \n" + responseNode.toString());
         Dataset<Row> ds = SparkSession.active().sql("select 1")
@@ -69,6 +69,12 @@ public abstract class BaseProcessor implements Processor {
         // Dataset<Row> ds = SparkUtils.list2Ds(collect);
 
         return ds;
+    }
+
+    public static String timeFormatFunc(LocalDate date) {
+        // 日期规则, 格式:月/日 如:1/1,/10/1,12/12 如月或者日小于10,前面无需加0
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d");
+        return date.format(formatter);
     }
 
 }
