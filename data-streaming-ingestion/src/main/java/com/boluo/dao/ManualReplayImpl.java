@@ -2,19 +2,13 @@ package com.boluo.dao;
 
 import com.boluo.config.KafkaConfigService;
 import com.boluo.config.StreamConfigService;
-import com.boluo.service.StreamingService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
-import org.apache.spark.sql.api.java.UDF2;
-import org.apache.spark.sql.expressions.UserDefinedFunction;
-import org.apache.spark.sql.functions;
 import org.apache.spark.sql.streaming.StreamingQueryException;
-import org.apache.spark.sql.streaming.Trigger;
-import org.apache.spark.sql.types.StringType$;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +18,9 @@ import scala.collection.JavaConverters;
 import scala.collection.mutable.WrappedArray;
 import utils.SparkUtils;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeoutException;
-
-import static org.apache.spark.sql.functions.*;
 
 
 /**
@@ -42,6 +33,8 @@ public class ManualReplayImpl {
 
     private static final Logger LOG = LoggerFactory.getLogger(ManualReplayImpl.class);
     private static final SparkSession spark = SparkUtils.initialSpark();
+    private static final ObjectMapper mapper = new ObjectMapper();
+    private static final String emptyJson = "{}";
 
 
     @Autowired
@@ -94,10 +87,10 @@ public class ManualReplayImpl {
 
 
             try {
-                ObjectNode startObjectNode = (ObjectNode) (new ObjectMapper()).readTree("{}");
-                ObjectNode endObjectNode = (ObjectNode) (new ObjectMapper()).readTree("{}");
-                ObjectNode innerStartObjectNode = (ObjectNode) (new ObjectMapper()).readTree("{}");
-                ObjectNode innerEndObjectNode = (ObjectNode) (new ObjectMapper()).readTree("{}");
+                ObjectNode startObjectNode = (ObjectNode) mapper.readTree(emptyJson);
+                ObjectNode endObjectNode = (ObjectNode) mapper.readTree(emptyJson);
+                ObjectNode innerStartObjectNode = (ObjectNode) mapper.readTree(emptyJson);
+                ObjectNode innerEndObjectNode = (ObjectNode) mapper.readTree(emptyJson);
 
                 for (Integer num : partitionNums) {
                     innerStartObjectNode.put(num.toString(), 0);
