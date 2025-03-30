@@ -8,6 +8,17 @@ source:
     username: dingchao
     password: 6049773e1914457d
 
+
+dest:
+    name: ORD
+    type: mysql
+    jdbcUrl: jdbc:mysql://mysql.sqlpub.com:3306/dingchao_db?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    driverClass: com.mysql.cj.jdbc.Driver
+    dbName: dingchao_db
+    username: dingchao
+    password: 6049773e1914457d
+
+
 jobs:
     - name: a
       sourceName: ORD
