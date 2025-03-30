@@ -17,6 +17,7 @@ public class BatchYamlConfig {
 
     private Source source;
     private List<Job> jobs;
+    private List<Dest> dest;
 
 
     @Data
@@ -30,6 +31,16 @@ public class BatchYamlConfig {
         private String password;
     }
 
+    @Data
+    public static class Dest {
+        private String name;
+        private String type;
+        private String jdbcUrl;
+        private String driverClass;
+        private String dbName;
+        private String username;
+        private String password;
+    }
 
     @Data
     @AllArgsConstructor
@@ -44,6 +55,8 @@ public class BatchYamlConfig {
         private String type;
         private String destTable;
         private String sqlQuery;
+        private Source source;
+        private Dest dest;
     }
 
 

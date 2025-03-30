@@ -12,15 +12,14 @@ import org.apache.spark.sql.SparkSession;
  */
 public class DatasetUtils {
 
-    public static void readFromMySQL(String url, String tableName, String username, String password) {
-        Dataset<Row> ds = SparkSession.active().read()
+    public static Dataset<Row> readFromMySQL(String url, String tableName, String username, String password) {
+        return SparkSession.active().read()
                 .format("jdbc")
-                .option("url", "jdbc:mysql://mysql.sqlpub.com:3306/dingchao_db")
-                .option("dbtable", "(select * from demo_01) a")
-                .option("user", "dingchao")
-                .option("password", "6049773e1914457d")
+                .option("url", url)
+                .option("dbtable", tableName)
+                .option("user", username)
+                .option("password", password)
                 .load();
-        ds.show(false);
     }
 
     public static void writeToMySQL(Dataset<Row> ds, String url, String tableName, String username, String password) {

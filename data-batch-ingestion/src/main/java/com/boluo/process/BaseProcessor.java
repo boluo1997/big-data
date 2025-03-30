@@ -1,6 +1,7 @@
 package com.boluo.process;
 
 import com.boluo.config.BatchYamlConfig;
+import utils.DatasetUtils;
 
 import java.util.List;
 
@@ -23,6 +24,9 @@ public abstract class BaseProcessor implements Processor {
 
     protected long ingest(BatchYamlConfig.Job job, String batchID) {
         // TODO
+        System.out.println("test ...");
+
+        DatasetUtils.readFromMySQL("", "", "", "");
         return 0L;
     }
 
