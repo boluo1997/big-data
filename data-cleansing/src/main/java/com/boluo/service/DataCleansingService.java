@@ -15,7 +15,7 @@ public class DataCleansingService {
     @Autowired
     private ReadMysqlDao readMysqlDao;
 
-    public void processTrade() {
+    public void processTrade() throws Exception {
         System.out.println("process trade started !! ");
         readMysqlDao.readStreamingFromMySQL("bronze_daily");
     }
