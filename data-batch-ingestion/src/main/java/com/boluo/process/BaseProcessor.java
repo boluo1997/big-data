@@ -31,6 +31,7 @@ public abstract class BaseProcessor implements Processor {
         BatchYamlConfig.Source sourceDB = job.getSource();
         Dataset<Row> sourceDs = DatasetUtils.readFromMySQL(sourceDB.getJdbcUrl(), job.getSourceTableName(), sourceDB.getUsername(), sourceDB.getPassword());
         sourceDs.show(false);
+
         return 0L;
     }
 
