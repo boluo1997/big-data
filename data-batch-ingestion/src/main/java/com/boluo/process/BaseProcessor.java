@@ -1,7 +1,10 @@
 package com.boluo.process;
 
 import com.boluo.config.BatchYamlConfig;
+import org.apache.spark.sql.Dataset;
+import org.apache.spark.sql.Row;
 import utils.DatasetUtils;
+import utils.SparkUtils;
 
 import java.util.List;
 
@@ -25,8 +28,10 @@ public abstract class BaseProcessor implements Processor {
     protected long ingest(BatchYamlConfig.Job job, String batchID) {
         // TODO
         System.out.println("test ...");
+        BatchYamlConfig.Source sourceDB = job.getSource();
+        Dataset<Row> sourceDs = DatasetUtils.readFromMySQL(sourceDB.getJdbcUrl(), job.getSourceTableName(), sourceDB.getUsername(), sourceDB.getPassword());
+        sourceDs.show(false);
 
-        DatasetUtils.readFromMySQL("", "", "", "");
         return 0L;
     }
 

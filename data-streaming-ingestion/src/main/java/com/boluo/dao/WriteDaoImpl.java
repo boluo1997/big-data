@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 import org.apache.spark.sql.streaming.StreamingQueryException;
 import org.springframework.stereotype.Component;
+import utils.DatasetUtils;
 import utils.SparkUtils;
 
 import java.util.HashMap;
@@ -41,7 +42,7 @@ public class WriteDaoImpl {
                         String tableName = "bronze_trade";
                         String userName = "dingchao";
                         String password = "6049773e1914457d";
-                        SparkUtils.writeToMySQL(batchDs, jdbcUrl, tableName, userName, password);
+                        DatasetUtils.writeToMySQL(batchDs, jdbcUrl, tableName, userName, password);
                     }
                 }).start().awaitTermination();
 

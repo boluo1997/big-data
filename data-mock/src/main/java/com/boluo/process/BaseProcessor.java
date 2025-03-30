@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
+import utils.DatasetUtils;
 import utils.SparkUtils;
 
 import javax.ws.rs.HttpMethod;
@@ -37,7 +38,7 @@ public abstract class BaseProcessor implements Processor {
         Dataset<Row> sourceDs = getApiInfo(job, batchId);
 
         BatchYamlConfig.Dest destDB = job.getDest();
-        SparkUtils.writeToMySQL(sourceDs, destDB.getJdbcUrl(), job.getDestTable(), destDB.getUsername(), destDB.getPassword());
+        DatasetUtils.writeToMySQL(sourceDs, destDB.getJdbcUrl(), job.getDestTable(), destDB.getUsername(), destDB.getPassword());
         return 0;
     }
 
