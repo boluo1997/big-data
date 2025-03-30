@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;
+import java.util.Optional;
 
 /**
  * @author chao
@@ -53,7 +54,13 @@ public class BatchConfig {
         BatchYamlConfig yamlConfig = yaml.loadAs(inputStream, BatchYamlConfig.class);
         System.out.println("Load source and job table success ");
 
-        // todo populate source info
+        // populate source & dest database info to Job object
+        yamlConfig.getJobs().forEach(job -> {
+            Optional<BatchYamlConfig.Source> source = yamlConfig.getSource().stream().filter(s -> s.getName().equalsIgnoreCase(job.getSourceName())).findFirst();
+            source.ifPresent(job::setSource);
+            Optional<BatchYamlConfig.Dest> dest = yamlConfig.getDest().stream().filter(d -> d.getName().equalsIgnoreCase(job.getDestName())).findFirst();
+            dest.ifPresent(job::setDest);
+        });
 
         setYamlConfig(yamlConfig);
         return this;

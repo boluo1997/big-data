@@ -15,10 +15,9 @@ import java.util.stream.Collectors;
 @ToString
 public class BatchYamlConfig {
 
-    private Source source;
-    private List<Job> jobs;
+    private List<Source> source;
     private List<Dest> dest;
-
+    private List<Job> jobs;
 
     @Data
     public static class Source {
@@ -26,7 +25,6 @@ public class BatchYamlConfig {
         private String type;
         private String jdbcUrl;
         private String driverClass;
-        private String dbName;
         private String username;
         private String password;
     }
@@ -37,7 +35,6 @@ public class BatchYamlConfig {
         private String type;
         private String jdbcUrl;
         private String driverClass;
-        private String dbName;
         private String username;
         private String password;
     }
@@ -48,13 +45,16 @@ public class BatchYamlConfig {
     @ToString
     public static class Job {
         private String name;
-        private String sourceName;
-        private String sourceSchema;
-        private String sourceTable;
-        private String ingestEnabled;
         private String type;
-        private String destTable;
-        private String sqlQuery;
+
+        private String sourceName;
+        private String sourceTableName;
+        private String sourceSqlQuery;
+        private String ingestEnabled;
+
+        private String destName;
+        private String destTableName;
+
         private Source source;
         private Dest dest;
     }
