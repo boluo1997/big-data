@@ -1,9 +1,11 @@
 package utils;
 
-import org.apache.spark.sql.Dataset;
-import org.apache.spark.sql.Row;
-import org.apache.spark.sql.SaveMode;
-import org.apache.spark.sql.SparkSession;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import org.apache.spark.api.java.function.MapFunction;
+import org.apache.spark.sql.*;
+
+import java.util.List;
 
 /**
  * @author chao
@@ -11,6 +13,8 @@ import org.apache.spark.sql.SparkSession;
  * @description
  */
 public class DatasetUtils {
+
+    private static final ObjectMapper mapper = new ObjectMapper();
 
     public static Dataset<Row> readFromMySQL(String url, String tableName, String username, String password) {
         return SparkSession.active().read()
@@ -32,4 +36,16 @@ public class DatasetUtils {
                 .mode(SaveMode.Append)
                 .save();
     }
+
+
+    public static Dataset<Row> list2Ds(List<ObjectNode> list) {
+
+        Dataset<String> dsJson = SparkSession.active()
+                .createDataset(list, Encoders.kryo(ObjectNode.class))
+                .map((MapFunction<ObjectNode, String>) mapper::writeValueAsString, Encoders.STRING());
+
+        return SparkSession.active().read().json(dsJson);
+    }
+
+
 }

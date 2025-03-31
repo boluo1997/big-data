@@ -1,11 +1,6 @@
 package utils;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import org.apache.spark.api.java.function.MapFunction;
-import org.apache.spark.sql.*;
-
-import java.util.List;
+import org.apache.spark.sql.SparkSession;
 
 /**
  * @author chao
@@ -14,28 +9,13 @@ import java.util.List;
  */
 public class SparkUtils {
 
-    private static final ObjectMapper mapper = new ObjectMapper();
+    private static SparkSession spark;
 
     public static SparkSession initialSpark() {
-
-        String osName = System.getProperty("os.name");
-        System.out.println("System name: " + osName);
-
-        if (osName.startsWith("Windows")) {
-            System.setProperty("hadoop.home.dir", System.getProperty("user.dir") + "/hadoop/");
+        if (spark == null) {
+            spark = SparkSession.builder().appName("SparkAppName").master("local[*]").getOrCreate();
         }
-
-        return SparkSession.builder().appName("SparkAppName").master("local[*]").getOrCreate();
-    }
-
-
-    public static Dataset<Row> list2Ds(List<ObjectNode> list) {
-
-        Dataset<String> dsJson = SparkSession.active()
-                .createDataset(list, Encoders.kryo(ObjectNode.class))
-                .map((MapFunction<ObjectNode, String>) mapper::writeValueAsString, Encoders.STRING());
-
-        return SparkSession.active().read().json(dsJson);
+        return spark;
     }
 
 }
