@@ -49,6 +49,7 @@ public class DailyProcessor extends BaseProcessor {
                 ingest(job, batchId);
             });
         }
+        service.shutdown();
     }
 
 
