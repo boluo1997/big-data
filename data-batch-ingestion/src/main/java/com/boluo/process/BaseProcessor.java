@@ -32,6 +32,8 @@ public abstract class BaseProcessor implements Processor {
         Dataset<Row> sourceDs = DatasetUtils.readFromMySQL(sourceDB.getJdbcUrl(), job.getSourceTableName(), sourceDB.getUsername(), sourceDB.getPassword());
         sourceDs.show(false);
 
+        BatchYamlConfig.Dest destDB = job.getDest();
+        DatasetUtils.writeToMySQL(sourceDs, destDB.getJdbcUrl(), job.getDestTableName(), destDB.getUsername(), destDB.getPassword());
         return 0L;
     }
 
