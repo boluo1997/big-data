@@ -1,6 +1,6 @@
 package com.boluo.service;
 
-import com.boluo.dao.ReadMysqlDao;
+import com.boluo.dao.ReadJDBCDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,11 +13,12 @@ import org.springframework.stereotype.Component;
 public class DataCleansingService {
 
     @Autowired
-    private ReadMysqlDao readMysqlDao;
+    private ReadJDBCDao readJDBCDao;
 
     public void processTrade() throws Exception {
         System.out.println("process trade started !! ");
-        readMysqlDao.readStreamingFromMySQL("bronze_daily");
+        readJDBCDao.readStreamingFromMySQL("bronze_daily");
+        // readJDBCDao.readStreamingFromOracle("bo_ord_area");
     }
 
 }
