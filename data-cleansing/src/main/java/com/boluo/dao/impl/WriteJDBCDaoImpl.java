@@ -5,5 +5,6 @@ package com.boluo.dao.impl;
  * @datetime 2025-03-30 22:12
  * @description
  */
-public class WriteDaoImpl {
+public class WriteJDBCDaoImpl {
+
 }
