@@ -1,33 +1,31 @@
 # 代码片段
 
-
 [![build](https://github.com/Anduin2017/HowToCook/actions/workflows/build.yml/badge.svg)](https://github.com/Anduin2017/HowToCook/actions/workflows/build.yml)
 [![License](https://img.shields.io/github/license/Anduin2017/HowToCook)](./LICENSE)
 [![GitHub contributors](https://img.shields.io/github/contributors/Anduin2017/HowToCook)](https://github.com/Anduin2017/HowToCook/graphs/contributors)
 [![npm](https://img.shields.io/npm/v/how-to-cook)](https://www.npmjs.com/package/how-to-cook)
 
+### data-mock
 
-## data-mock
-- [批次](maven/java8/algorithm)
-  - [按日](maven/java8/algorithm/BinSearch.java)
-  - [按小时](maven/java8/algorithm/BubbleSort.java)
-- [流式](maven/scala2/basic)
-
+| time  | schema | table                |
+|-------|--------|----------------------|
+| 00:15 | api*   | api_today_on_history |
 
 ## data-batch-ingestion
 
-- [批次](maven/java8/algorithm)
-    - [按日](maven/java8/algorithm/BinSearch.java)
-    - [按小时](maven/java8/algorithm/BubbleSort.java)
-
+| time  | schema  | table        |
+|-------|---------|--------------|
+| 00:30 | bronze* | bronze_daily |
 
 ## data-streaming-ingestion
 
-- [流式](maven/scala2/basic)
-    - [Kafka](maven/scala2/basic/ArrayTest.scala)
-
+| time | schema | table |
+|------|--------|-------|
+| TBD  | TBD    | TBD   |
 
 ## data-cleansing
 
-- [数据清理](./python/demo)
-    - [ipad test](./python/demo/py)
+| time  | schema  | table        |
+|-------|---------|--------------|
+| 00:45 | silver* | silver_daily |
+
